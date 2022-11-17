@@ -1,6 +1,10 @@
 import style from "./Home.module.css";
+import {useNavigate} from 'react-router-dom';
 
 export default function Home() {
+
+    const navigate = useNavigate();
+
     return (
         <div className={style.home_content}>
             <div>
@@ -13,7 +17,7 @@ export default function Home() {
                         <p className={style.data_content}>View all locations in the series.</p>
                     </div>
                 </div>
-                <div className={style.d_card}>
+                <div className={style.d_card} onClick={() => navigate(`/character`)}>
                     <div className={style.content}>
                         <h2 className={style.heading}>Character</h2>
                         <p className={style.data_content}>View all characters from the series.</p>
