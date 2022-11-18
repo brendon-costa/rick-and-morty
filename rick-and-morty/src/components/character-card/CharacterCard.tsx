@@ -7,6 +7,7 @@ import Card from "@mui/material/Card";
 
 interface CharacterCardModel {
     name: string;
+    image: string;
     species: string;
     status: string;
     origin: string;
@@ -15,12 +16,12 @@ interface CharacterCardModel {
 
 export default function CharacterCard(prop: CharacterCardModel) {
     return (
-        <Card sx={{ maxWidth: 300, minWidth: 300 }}>
+        <Card sx={{ width: 300, height: 421 }}>
             <CardActionArea>
                 <CardMedia
                     component="img"
                     height="250"
-                    image="https://rickandmortyapi.com/api/character/avatar/2.jpeg"
+                    image={prop.image}
                     alt="green iguana"
                 />
                 <CardContent>
