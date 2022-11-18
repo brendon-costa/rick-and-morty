@@ -9,20 +9,22 @@ import {getCharacter} from "../../services/character-service";
 export default function Character() {
 
     // let characters = useCharacter(1);
-    const [pageNumber, setPageNumber] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const [characters, setCharacters] = useState<CharacterModel[]>([]);
     const [loading, setLoading] = useState(true);
+    const [pages, setPages] = useState(1);
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const response = await getCharacter(pageNumber);
+            const response = await getCharacter(currentPage);
             setCharacters(response.data.results);
+            setPages(response.data.info.pages);
             window.scrollTo(0, 0);
             setLoading(false);
         };
         fetchData();
-    }, [pageNumber]);
+    }, [currentPage]);
 
     return (
         <Container>
@@ -47,7 +49,7 @@ export default function Character() {
                 })}
             </Grid>
             <Stack spacing={5} alignItems='center' style={{marginBottom: '50px', marginTop: '50px'}}>
-                <Pagination count={10} onChange={(e, page) => setPageNumber(page)}/>
+                <Pagination count={pages} onChange={(e, page) => setCurrentPage(page)}/>
             </Stack>
             <Backdrop open={loading}>
                 <CircularProgress color="inherit"/>
