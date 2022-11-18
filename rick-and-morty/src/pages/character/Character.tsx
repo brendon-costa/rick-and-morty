@@ -1,12 +1,24 @@
-import {Container} from "@mui/material";
+import {Container, Pagination, PaginationItem, Stack} from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 import CharacterCard from "../../components/character-card/CharacterCard";
 import {useCharacter} from "../../hooks/useCharacter";
 import {CharacterModel} from "../../model/CharacterModel";
+import {useEffect, useState} from "react";
+import {getCharacter} from "../../services/character-service";
 
 export default function Character() {
 
-    const characters = useCharacter('/character');
+    // let characters = useCharacter(1);
+    const [pageNumber, setPageNumber] = useState(1);
+    const [characters, setCharacters] = useState<CharacterModel[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await getCharacter(pageNumber);
+            setCharacters(response.data.results);
+        };
+        fetchData();
+    }, [pageNumber]);
 
     return (
         <Container>
@@ -30,6 +42,9 @@ export default function Character() {
                     )
                 })}
             </Grid>
+            <Stack spacing={5} alignItems='center' style={{marginBottom: '50px', marginTop: '50px'}}>
+                <Pagination count={10} onChange={(e, page) => setPageNumber(page)}/>
+            </Stack>
         </Container>
     )
 }
