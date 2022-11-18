@@ -2,7 +2,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import {Box, CardActionArea, Container, Grid} from "@mui/material";
+import {CardActionArea, Container} from "@mui/material";
+import Grid from '@mui/material/Unstable_Grid2';
 
 export default function Character() {
 
@@ -27,10 +28,40 @@ export default function Character() {
                                         <Typography gutterBottom variant="h5" component="div">
                                             Lizard
                                         </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Lizards are a widespread group of squamate reptiles, with over 6,000
-                                            species, ranging across all continents except Antarctica
-                                        </Typography>
+                                        <Grid container>
+                                            <Grid xs={6} sm={6} md={6}>
+                                                <Typography variant="body2" color="text.primary">
+                                                    Species
+                                                </Typography>
+                                                <Typography variant="body2" color="text.secondary">
+                                                    Human
+                                                </Typography>
+                                            </Grid>
+                                            <Grid xs={6} sm={6} md={6}>
+                                                <Typography variant="body2" color="text.primary">
+                                                    Status
+                                                </Typography>
+                                                <Typography variant="body2" color="text.secondary">
+                                                    Alive
+                                                </Typography>
+                                            </Grid>
+                                            <Grid xs={6} sm={6} md={6}>
+                                                <Typography variant="body2" color="text.primary">
+                                                    Origin
+                                                </Typography>
+                                                <Typography variant="body2" color="text.secondary">
+                                                    Earth
+                                                </Typography>
+                                            </Grid>
+                                            <Grid xs={6} sm={6} md={6}>
+                                                <Typography variant="body2" color="text.primary">
+                                                    Location
+                                                </Typography>
+                                                <Typography variant="body2" color="text.secondary">
+                                                    Earth
+                                                </Typography>
+                                            </Grid>
+                                        </Grid>
                                     </CardContent>
                                 </CardActionArea>
                             </Card>
