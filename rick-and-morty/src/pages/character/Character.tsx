@@ -1,4 +1,4 @@
-import {Container, Pagination, PaginationItem, Stack} from "@mui/material";
+import {Backdrop, CircularProgress, Container, Pagination, PaginationItem, Stack} from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 import CharacterCard from "../../components/character-card/CharacterCard";
 import {useCharacter} from "../../hooks/useCharacter";
@@ -11,11 +11,15 @@ export default function Character() {
     // let characters = useCharacter(1);
     const [pageNumber, setPageNumber] = useState(1);
     const [characters, setCharacters] = useState<CharacterModel[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             const response = await getCharacter(pageNumber);
             setCharacters(response.data.results);
+            window.scrollTo(0, 0);
+            setLoading(false);
         };
         fetchData();
     }, [pageNumber]);
@@ -45,6 +49,9 @@ export default function Character() {
             <Stack spacing={5} alignItems='center' style={{marginBottom: '50px', marginTop: '50px'}}>
                 <Pagination count={10} onChange={(e, page) => setPageNumber(page)}/>
             </Stack>
+            <Backdrop open={loading}>
+                <CircularProgress color="inherit"/>
+            </Backdrop>
         </Container>
     )
 }

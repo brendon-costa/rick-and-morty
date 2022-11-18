@@ -1,9 +1,8 @@
 import {useEffect, useState} from "react";
-import api from "../services/api";
 import {getCharacter} from "../services/character-service";
 import {CharacterModel} from "../model/CharacterModel";
 
-export const useCharacter = (pageNumber: number): CharacterModel[] => {
+export const useCharacter = (pageNumber: number): any => {
     const [characters, setCharacters] = useState<CharacterModel[]>([]);
     useEffect(() => {
         const fetchData = async () => {
@@ -12,5 +11,5 @@ export const useCharacter = (pageNumber: number): CharacterModel[] => {
         };
         fetchData();
     }, [pageNumber]);
-    return characters;
+    return {characters};
 }
