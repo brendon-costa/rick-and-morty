@@ -1,19 +1,20 @@
 import {Container} from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 import CharacterCard from "../../components/character-card/CharacterCard";
+import {useCharacter} from "../../hooks/useCharacter";
 
 export default function Character() {
 
-    const list = [1,2,3,4,5,6];
+    const { characters } = useCharacter('/character');
 
     return (
         <Container>
             <h1>Character</h1>
             <Grid container>
-                {list.map(value => {
+                {characters.map((character: any) => {
                     return (
                         <Grid
-                            xs={12} sm={6} md={4} key={value}
+                            xs={12} sm={6} md={4} key={character.id}
                             style={{marginBottom: '35px', display: 'flex', justifyContent: 'center'}}
                         >
                             <CharacterCard
