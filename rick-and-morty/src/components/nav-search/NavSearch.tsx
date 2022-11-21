@@ -1,5 +1,5 @@
 import style from './NavSearch.module.css';
-import {Container, TextField, Typography} from "@mui/material";
+import {AppBar, Box, Button, Container, TextField, Typography} from "@mui/material";
 import { useForm } from "react-hook-form";
 import {useEffect} from "react";
 
@@ -17,18 +17,22 @@ export function NavSearch(prop: NavSearchModel) {
     }, [watch("search")])
 
     return (
-        <Container className={style.navSearchContainer}>
-            <Typography variant="h4" component="h2">
+        <AppBar position="static" className={style.navSearchContainer}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 {prop.title}
             </Typography>
-            <div>
+            <div className={style.navInputContainer}>
                 <form>
                     <TextField
                         label="Search" placeholder="Enter a name" variant="outlined" size="small"
                         {...register("search", { required: true })}
                     />
                 </form>
+                <Button variant="text" size="small" className="direction-col">
+                    <span>Advanced</span>
+                    <span>search</span>
+                </Button>
             </div>
-        </Container>
+        </AppBar>
     )
 }
