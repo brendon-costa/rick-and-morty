@@ -1,36 +1,20 @@
-import {Backdrop, CircularProgress, Container, Pagination, PaginationItem, Stack} from "@mui/material";
+import {Backdrop, CircularProgress, Container, Pagination, Stack} from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 import CharacterCard from "../../components/character-card/CharacterCard";
-import {useCharacter} from "../../hooks/useCharacter";
 import {CharacterModel} from "../../model/CharacterModel";
-import {useEffect, useState} from "react";
-import {getCharacter} from "../../services/character-service";
+import {useState} from "react";
+import {useCharacter} from "../../hooks/useCharacter";
 
 export default function Character() {
 
-    // let characters = useCharacter(1);
     const [currentPage, setCurrentPage] = useState(1);
-    const [characters, setCharacters] = useState<CharacterModel[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [pages, setPages] = useState(1);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            const response = await getCharacter(currentPage);
-            setCharacters(response.data.results);
-            setPages(response.data.info.pages);
-            window.scrollTo(0, 0);
-            setLoading(false);
-        };
-        fetchData();
-    }, [currentPage]);
+    const {characters, loading, pages} = useCharacter(currentPage);
 
     return (
         <Container>
             <h1>Character</h1>
             <Grid container>
-                {characters.map((character: CharacterModel) => {
+                {characters && characters.map((character: CharacterModel) => {
                     return (
                         <Grid
                             xs={12} sm={6} md={4} key={character.id}
