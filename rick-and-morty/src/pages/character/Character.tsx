@@ -1,4 +1,4 @@
-import {Backdrop, CircularProgress, Container, Pagination, Stack} from "@mui/material";
+import {Alert, Backdrop, CircularProgress, Container, Pagination, Snackbar, Stack} from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 import CharacterCard from "../../components/character-card/CharacterCard";
 import {CharacterModel} from "../../model/CharacterModel";
@@ -8,7 +8,7 @@ import {useCharacter} from "../../hooks/useCharacter";
 export default function Character() {
 
     const [currentPage, setCurrentPage] = useState(1);
-    const {characters, loading, pages} = useCharacter(currentPage);
+    const {characters, loading, pages, error} = useCharacter(currentPage);
 
     return (
         <Container>
@@ -38,6 +38,9 @@ export default function Character() {
             <Backdrop open={loading}>
                 <CircularProgress color="inherit"/>
             </Backdrop>
+            <Snackbar open={error}>
+                <Alert severity="error">Houve algum error ao carregar os dados!</Alert>
+            </Snackbar>
         </Container>
     )
 }
