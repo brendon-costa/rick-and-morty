@@ -1,5 +1,5 @@
 .navSearchContainer {
-    display: flex;
+    display: flex!important;
     width: 100%;
     padding: 20px;
     align-items: center;

@@ -9,11 +9,12 @@ import {NavSearch} from "../../components/nav-search/NavSearch";
 export default function Character() {
 
     const [currentPage, setCurrentPage] = useState(1);
-    const {characters, loading, pages, error} = useCharacter(currentPage);
+    const [search, setSearch] = useState('');
+    const {characters, loading, pages, error} = useCharacter(currentPage, search);
 
     return (
         <div>
-            <NavSearch/>
+            <NavSearch title="Character" changeSearch={(value) => setSearch(value)}/>
             <Container>
                 <Grid container>
                     {characters && characters.map((character: CharacterModel) => {

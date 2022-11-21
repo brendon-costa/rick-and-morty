@@ -3,6 +3,7 @@ import {AxiosResponse} from "axios";
 import {ResponseModel} from "../model/ResponseModel";
 import {CharacterModel} from "../model/CharacterModel";
 
-export const getCharacter = (pageNumber: number): Promise<AxiosResponse<ResponseModel<CharacterModel[]>>> => {
-    return api.get(`/character/?page=${pageNumber}&count=21`);
+export const getCharacter = (page: number, name: string): Promise<AxiosResponse<ResponseModel<CharacterModel[]>>> => {
+    const params = {page, name}
+    return api.get(`/character`, {params: params});
 }
