@@ -11,7 +11,7 @@ export default function Home() {
                 <h1 className={style.test}>Rick And Morty</h1>
             </div>
             <div className={style.page_content}>
-                <div className={style.d_card}>
+                <div className={style.d_card} onClick={() => navigate(`/location`)}>
                     <div className={style.content}>
                         <h2 className={style.heading}>Location</h2>
                         <p className={style.data_content}>View all locations in the series.</p>
