@@ -1,4 +1,4 @@
-import {SelectOptionsModel} from "../../model/SelectOptionsModel";
+import {SelectOptionsModel} from "../../model/OptionsModel";
 
 export const statusOptions = ((): SelectOptionsModel[] => {
     return [

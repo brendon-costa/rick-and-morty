@@ -1,6 +1,6 @@
-import {SelectOptionsModel} from "../../model/SelectOptionsModel";
+import {OptionsModel} from "../../model/OptionsModel";
 
-export const genderOptions = ((): SelectOptionsModel[] => {
+export const genderOptions = ((): OptionsModel[] => {
     return [
         {label: '-- Unselect Options --', value: ''},
         {label: 'Female', value: 'female'},
