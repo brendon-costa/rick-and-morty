@@ -1,4 +1,4 @@
-import {ChangeEvent, useState} from "react";
+import {useState} from "react";
 import {
     Container,
     Paper,
@@ -10,50 +10,19 @@ import {
     TablePagination,
     TableRow
 } from "@mui/material";
-
-interface Column {
-    id: 'name' | 'type' | 'dimension';
-    label: string;
-    minWidth?: number;
-}
-
-const columns: readonly Column[] = [
-    { id: 'name', label: 'Name', minWidth: 100 },
-    { id: 'type', label: 'Type', minWidth: 100 },
-    { id: 'dimension', label: 'Dimension', minWidth: 100 },
-];
-
-interface Data {
-    id: number;
-    name: string;
-    type: string;
-    dimension: string;
-}
-
-function createData(
-    id: number,
-    name: string,
-    type: string,
-    dimension: string,
-): Data {
-    return { id, name, type, dimension };
-}
-
-const rows = [
-    createData(1, 'Earth', 'Planet', 'Dimension C-137'),
-    createData(2, 'Earth', 'Planet', 'Dimension C-137'),
-    createData(3, 'Earth', 'Planet', 'Dimension C-137'),
-    createData(4, 'Earth', 'Planet', 'Dimension C-137'),
-    createData(5, 'Earth', 'Planet', 'Dimension C-137'),
-    createData(6, 'Earth', 'Planet', 'Dimension C-137'),
-];
+import {useLocation} from "../../hooks/useLocation";
 
 export function Location() {
 
-    const [page, setPage] = useState(0);
-
+    const [page, setPage] = useState(1);
+    const {locations, loading, pages, error} = useLocation(page);
+    const columns = [
+        { id: 'name', label: 'Name', minWidth: 100 },
+        { id: 'type', label: 'Type', minWidth: 100 },
+        { id: 'dimension', label: 'Dimension', minWidth: 100 },
+    ];
     const handleChangePage = (event: unknown, newPage: number) => {
-        setPage(newPage);
+        setPage(newPage + 1);
     };
 
     return (
@@ -74,11 +43,11 @@ export function Location() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows
-                                .map((row) => {
+                            {locations
+                                .map((row: any) => {
                                     return (
                                         <TableRow hover role="checkbox" tabIndex={-1} key={'row'+row.id}>
-                                            {columns.map((column: Column) => {
+                                            {columns.map((column: any) => {
                                                 const value = row[column.id];
                                                 return (
                                                     <TableCell key={column.id}>
@@ -95,9 +64,9 @@ export function Location() {
                 <TablePagination
                     rowsPerPageOptions={[20]}
                     component="div"
-                    count={rows.length}
+                    count={pages}
                     rowsPerPage={20}
-                    page={page}
+                    page={page - 1}
                     onPageChange={handleChangePage}
                 />
             </Paper>
