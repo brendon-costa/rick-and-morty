@@ -1,16 +1,16 @@
 import {useEffect, useState} from "react";
-import {getLocation} from "../services/location-service";
+import {getEpisode} from "../services/episode-service";
 
-export const useLocation = (pageNumber: number): any => {
-    const [locations, setLocations] = useState<any[]>([]);
+export const useEpisode = (pageNumber: number): any => {
+    const [episodes, setEpisodes] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [pages, setPages] = useState(1);
     const [error, setError] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getLocation(pageNumber);
-                setLocations(response.data.results);
+                const response = await getEpisode(pageNumber);
+                setEpisodes(response.data.results);
                 setPages(response.data.info.count);
                 setLoading(false);
                 setError(false);
@@ -21,5 +21,5 @@ export const useLocation = (pageNumber: number): any => {
         };
         fetchData();
     }, [pageNumber]);
-    return {locations, loading, pages, error};
+    return {episodes, loading, pages, error};
 }

@@ -5,6 +5,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Character from "./pages/character/Character";
 import {Location} from "./pages/location/Location";
+import {Episode} from "./pages/episode/Episode";
 
 const darkTheme = createTheme({
     palette: {
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/" element={<Home/>} />
                 <Route path="/character" element={<Character/>} />
                 <Route path="/location" element={<Location/>} />
+                <Route path="/episode" element={<Episode/>} />
             </Routes>
         </BrowserRouter>
     </ThemeProvider>

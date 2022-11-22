@@ -23,7 +23,7 @@ export default function Home() {
                         <p className={style.data_content}>View all characters from the series.</p>
                     </div>
                 </div>
-                <div className={style.d_card}>
+                <div className={style.d_card} onClick={() => navigate(`/episode`)}>
                     <div className={style.content}>
                         <h2 className={style.heading}>Episode</h2>
                         <p className={style.data_content}>View all episodes of the series.</p>
