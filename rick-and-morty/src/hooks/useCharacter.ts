@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
 import {getCharacter} from "../services/character-service";
 import {CharacterModel} from "../model/CharacterModel";
+import {CharacterSearchModel} from "../model/CharacterSearchModel";
 
-export const useCharacter = (pageNumber: number, searchName: string): any => {
+export const useCharacter = (pageNumber: number, search: CharacterSearchModel): any => {
     const [characters, setCharacters] = useState<CharacterModel[]>([]);
     const [loading, setLoading] = useState(true);
     const [pages, setPages] = useState(1);
@@ -10,7 +11,7 @@ export const useCharacter = (pageNumber: number, searchName: string): any => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getCharacter(pageNumber, searchName);
+                const response = await getCharacter(pageNumber, search);
                 setCharacters(response.data.results);
                 setPages(response.data.info.pages);
                 window.scrollTo(0, 0);
@@ -22,6 +23,6 @@ export const useCharacter = (pageNumber: number, searchName: string): any => {
             }
         };
         fetchData();
-    }, [pageNumber, searchName]);
+    }, [pageNumber, search]);
     return {characters, loading, pages, error};
 }

@@ -5,16 +5,19 @@ import {CharacterModel} from "../../model/CharacterModel";
 import {useState} from "react";
 import {useCharacter} from "../../hooks/useCharacter";
 import {NavSearch} from "../../components/nav-search/NavSearch";
+import {CharacterSearchModel} from "../../model/CharacterSearchModel";
 
 export default function Character() {
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [search, setSearch] = useState('');
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [search, setSearch] = useState<CharacterSearchModel>(
+        {gender: '', name: '', search: '', species: '', status: '', type: ''}
+    );
     const {characters, loading, pages, error} = useCharacter(currentPage, search);
 
     return (
         <div>
-            <NavSearch title="Character" changeSearch={(value) => setSearch(value)}/>
+            <NavSearch title="Character" changeSearch={(value) => setSearch({...value})}/>
             <Container>
                 <Grid container>
                     {characters && characters.map((character: CharacterModel) => {
