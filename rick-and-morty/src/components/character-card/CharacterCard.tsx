@@ -17,53 +17,51 @@ interface CharacterCardModel {
 export default function CharacterCard(prop: CharacterCardModel) {
     return (
         <Card sx={{ width: 300, height: 421 }}>
-            <CardActionArea>
-                <CardMedia
-                    component="img"
-                    height="250"
-                    image={prop.image}
-                    alt="green iguana"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
-                        {prop.name}
-                    </Typography>
-                    <Grid container>
-                        <Grid xs={6} sm={6} md={6}>
-                            <Typography variant="body2" color="text.primary">
-                                Species
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                {prop.species}
-                            </Typography>
-                        </Grid>
-                        <Grid xs={6} sm={6} md={6}>
-                            <Typography variant="body2" color="text.primary">
-                                Status
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                {prop.status}
-                            </Typography>
-                        </Grid>
-                        <Grid xs={6} sm={6} md={6}>
-                            <Typography variant="body2" color="text.primary">
-                                Origin
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                {prop.origin}
-                            </Typography>
-                        </Grid>
-                        <Grid xs={6} sm={6} md={6}>
-                            <Typography variant="body2" color="text.primary">
-                                Location
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                {prop.location}
-                            </Typography>
-                        </Grid>
+            <CardMedia
+                component="img"
+                height="250"
+                image={prop.image}
+                alt="green iguana"
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h6" component="div">
+                    {prop.name}
+                </Typography>
+                <Grid container>
+                    <Grid xs={6} sm={6} md={6}>
+                        <Typography variant="body2" color="text.primary">
+                            Species
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            {prop.species}
+                        </Typography>
                     </Grid>
-                </CardContent>
-            </CardActionArea>
+                    <Grid xs={6} sm={6} md={6}>
+                        <Typography variant="body2" color="text.primary">
+                            Status
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            {prop.status}
+                        </Typography>
+                    </Grid>
+                    <Grid xs={6} sm={6} md={6}>
+                        <Typography variant="body2" color="text.primary">
+                            Origin
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            {prop.origin}
+                        </Typography>
+                    </Grid>
+                    <Grid xs={6} sm={6} md={6}>
+                        <Typography variant="body2" color="text.primary">
+                            Location
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            {prop.location}
+                        </Typography>
+                    </Grid>
+                </Grid>
+            </CardContent>
         </Card>
     )
 }
