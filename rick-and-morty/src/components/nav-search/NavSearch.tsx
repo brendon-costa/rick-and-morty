@@ -17,6 +17,7 @@ import {statusOptions} from "../../utils/options-select/status-options";
 import {genderOptions} from "../../utils/options-select/gender-options";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {useNavigate} from "react-router-dom";
+import {FilterDetails} from "../filter-details/FilterDetails";
 
 
 interface NavSearchModel {
@@ -162,25 +163,7 @@ export function NavSearch(prop: NavSearchModel) {
                     </DialogActions>
                 </Dialog>
             </AppBar>
-            {filters.length ? (
-                <Container>
-                    <div className={style.filtersContainer}>
-                        <p>Showing results filtered by:</p>
-                        <div>
-                            {filters.map((filter, index) => {
-                                return (
-                                    <Chip
-                                        label={filter.label+': '+filter.value}
-                                        variant="outlined"
-                                        key={filter.label}
-                                        onDelete={() => deleteSearch(index, filter.key)}
-                                    />
-                                )
-                            })}
-                        </div>
-                    </div>
-                </Container>
-            ) : null}
+            <FilterDetails filters={filters} deleteSearch={deleteSearch}/>
         </>
     )
 }
