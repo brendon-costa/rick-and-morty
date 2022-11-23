@@ -1,8 +1,7 @@
-import {OptionsModel} from "../../model/OptionsModel";
+import {SelectOptionsModel} from "../../model/OptionsModel";
 
-export const genderOptions = ((): OptionsModel[] => {
+export const genderOptions = ((): SelectOptionsModel[] => {
     return [
-        {label: '-- Unselect Options --', value: ''},
         {label: 'Female', value: 'female'},
         {label: 'Male', value: 'male'},
         {label: 'Genderless ', value: 'genderless'},

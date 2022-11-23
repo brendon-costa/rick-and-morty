@@ -18,6 +18,7 @@ import {genderOptions} from "../../utils/options-select/gender-options";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {useNavigate} from "react-router-dom";
 import {FilterDetails} from "../filter-details/FilterDetails";
+import {DynamicForm} from "../dynamic-form/dynamic-form";
 
 
 interface NavSearchModel {
@@ -107,52 +108,53 @@ export function NavSearch(prop: NavSearchModel) {
                     </DialogTitle>
                     <form>
                         <DialogContent>
-                            <Grid container spacing={2}>
-                                <Grid xs={12} md={6}>
-                                    <TextField
-                                        label="Name" variant="outlined" size="small"
-                                        {...register("name")} fullWidth
-                                    />
-                                </Grid>
-                                <Grid xs={12} md={6}>
-                                    <TextField
-                                        label="Status" variant="outlined" size="small"
-                                        {...register("status")} select fullWidth
-                                        defaultValue={''}
-                                    >
-                                        {statusOptions().map((option: SelectOptionsModel) => (
-                                            <MenuItem key={option.value} value={option.value}>
-                                                {option.label}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
-                                </Grid>
-                                <Grid xs={12} md={6}>
-                                    <TextField
-                                        label="Species" variant="outlined" size="small"
-                                        {...register("species")} fullWidth
-                                    />
-                                </Grid>
-                                <Grid xs={12} md={6}>
-                                    <TextField
-                                        label="Type" variant="outlined" size="small"
-                                        {...register("type")} fullWidth
-                                    />
-                                </Grid>
-                                <Grid xs={12} md={6}>
-                                    <TextField
-                                        label="Gender" variant="outlined" size="small"
-                                        {...register("gender")} select fullWidth
-                                        defaultValue={''}
-                                    >
-                                        {genderOptions().map((option: SelectOptionsModel) => (
-                                            <MenuItem key={option.value} value={option.value}>
-                                                {option.label}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
-                                </Grid>
-                            </Grid>
+                            <DynamicForm/>
+                            {/*<Grid container spacing={2}>*/}
+                            {/*    <Grid xs={12} md={6}>*/}
+                            {/*        <TextField*/}
+                            {/*            label="Name" variant="outlined" size="small"*/}
+                            {/*            {...register("name")} fullWidth*/}
+                            {/*        />*/}
+                            {/*    </Grid>*/}
+                            {/*    <Grid xs={12} md={6}>*/}
+                            {/*        <TextField*/}
+                            {/*            label="Status" variant="outlined" size="small"*/}
+                            {/*            {...register("status")} select fullWidth*/}
+                            {/*            defaultValue={''}*/}
+                            {/*        >*/}
+                            {/*            {statusOptions().map((option: SelectOptionsModel) => (*/}
+                            {/*                <MenuItem key={option.value} value={option.value}>*/}
+                            {/*                    {option.label}*/}
+                            {/*                </MenuItem>*/}
+                            {/*            ))}*/}
+                            {/*        </TextField>*/}
+                            {/*    </Grid>*/}
+                            {/*    <Grid xs={12} md={6}>*/}
+                            {/*        <TextField*/}
+                            {/*            label="Species" variant="outlined" size="small"*/}
+                            {/*            {...register("species")} fullWidth*/}
+                            {/*        />*/}
+                            {/*    </Grid>*/}
+                            {/*    <Grid xs={12} md={6}>*/}
+                            {/*        <TextField*/}
+                            {/*            label="Type" variant="outlined" size="small"*/}
+                            {/*            {...register("type")} fullWidth*/}
+                            {/*        />*/}
+                            {/*    </Grid>*/}
+                            {/*    <Grid xs={12} md={6}>*/}
+                            {/*        <TextField*/}
+                            {/*            label="Gender" variant="outlined" size="small"*/}
+                            {/*            {...register("gender")} select fullWidth*/}
+                            {/*            defaultValue={''}*/}
+                            {/*        >*/}
+                            {/*            {genderOptions().map((option: SelectOptionsModel) => (*/}
+                            {/*                <MenuItem key={option.value} value={option.value}>*/}
+                            {/*                    {option.label}*/}
+                            {/*                </MenuItem>*/}
+                            {/*            ))}*/}
+                            {/*        </TextField>*/}
+                            {/*    </Grid>*/}
+                            {/*</Grid>*/}
                         </DialogContent>
                     </form>
                     <DialogActions>
