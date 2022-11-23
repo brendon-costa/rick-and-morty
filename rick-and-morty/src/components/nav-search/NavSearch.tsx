@@ -4,9 +4,9 @@ import {
     Button, Chip, Container,
     Dialog, DialogActions,
     DialogContent,
-    DialogTitle, MenuItem,
-    TextField,
-    Typography
+    DialogTitle, IconButton, MenuItem,
+    TextField, Toolbar,
+    Typography,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -15,6 +15,8 @@ import {CharacterSearchModel} from "../../model/CharacterSearchModel";
 import {ChipOptionsModel, SelectOptionsModel} from "../../model/OptionsModel";
 import {statusOptions} from "../../utils/options-select/status-options";
 import {genderOptions} from "../../utils/options-select/gender-options";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import {useNavigate} from "react-router-dom";
 
 
 interface NavSearchModel {
@@ -24,7 +26,7 @@ interface NavSearchModel {
 }
 
 export function NavSearch(prop: NavSearchModel) {
-
+    const navigate = useNavigate();
     const [openModal, setOpenModal] = useState(false);
     const [filters, setFilters] = useState<ChipOptionsModel[]>([]);
     const { register, getValues, setValue, reset: resetForm, formState: { errors } } = useForm<CharacterSearchModel>();
@@ -67,23 +69,33 @@ export function NavSearch(prop: NavSearchModel) {
     return (
         <>
             <AppBar position="static" className={style.navSearchContainer}>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    {prop.title}
-                </Typography>
-                <div className={style.navInputContainer}>
-                    <form onSubmit={sendAdvancedSearch}>
-                        <TextField
-                            label="Search" placeholder="Enter a name" variant="outlined" size="small"
-                            {...register("search", { required: true })}
-                        />
-                    </form>
-                    {prop.advancedSearch ? (
-                        <Button variant="text" size="small" className="direction-col" onClick={openAndCloseModal}>
-                            <span>Advanced</span>
-                            <span>search</span>
-                        </Button>
-                    ) : null}
-                </div>
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                        onClick={() => navigate(-1)}
+                    >
+                        <ArrowBackIosIcon />
+                    </IconButton>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        {prop.title}
+                    </Typography>
+                    <div className={style.navInputContainer}>
+                        <form onSubmit={sendAdvancedSearch}>
+                            <TextField
+                                label="Search" placeholder="Enter a name" variant="outlined" size="small"
+                                {...register("search", { required: true })}
+                            />
+                        </form>
+                        {prop.advancedSearch ? (
+                            <Button variant="text" size="small" className="direction-col" onClick={openAndCloseModal}>
+                                <span>Advanced</span>
+                                <span>search</span>
+                            </Button>
+                        ) : null}
+                    </div>
+                </Toolbar>
                 <Dialog
                     open={openModal}
                     aria-labelledby="alert-dialog-title"

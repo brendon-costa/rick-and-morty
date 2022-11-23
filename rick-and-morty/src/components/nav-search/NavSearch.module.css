@@ -1,10 +1,4 @@
 .navSearchContainer {
-    display: flex!important;
-    width: 100%;
-    padding: 15px;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row!important;
     margin-bottom: 35px;
 }
 
