@@ -19,7 +19,8 @@ import {genderOptions} from "../../utils/options-select/gender-options";
 
 interface NavSearchModel {
     title: string;
-    changeSearch: (formValue: CharacterSearchModel) => void;
+    advancedSearch: boolean;
+    changeSearch: (formValue: any) => void;
 }
 
 export function NavSearch(prop: NavSearchModel) {
@@ -35,7 +36,7 @@ export function NavSearch(prop: NavSearchModel) {
     const sendAdvancedSearch = (event: any) => {
         event.preventDefault();
         const formValue = getValues();
-        prop.changeSearch(formValue);
+        prop.changeSearch(prop.advancedSearch ? formValue : formValue.search);
         updateFiltersList(formValue);
         resetForm();
         setOpenModal(false);
@@ -60,7 +61,7 @@ export function NavSearch(prop: NavSearchModel) {
         filters.splice(index, 1);
         setFilters([...filters]);
         const formValue = getValues();
-        prop.changeSearch(formValue);
+        prop.changeSearch(prop.advancedSearch ? formValue : formValue.search);
     }
 
     return (
@@ -76,10 +77,12 @@ export function NavSearch(prop: NavSearchModel) {
                             {...register("search", { required: true })}
                         />
                     </form>
-                    <Button variant="text" size="small" className="direction-col" onClick={openAndCloseModal}>
-                        <span>Advanced</span>
-                        <span>search</span>
-                    </Button>
+                    {prop.advancedSearch ? (
+                        <Button variant="text" size="small" className="direction-col" onClick={openAndCloseModal}>
+                            <span>Advanced</span>
+                            <span>search</span>
+                        </Button>
+                    ) : null}
                 </div>
                 <Dialog
                     open={openModal}
@@ -165,8 +168,7 @@ export function NavSearch(prop: NavSearchModel) {
                         </div>
                     </div>
                 </Container>
-            ) : null
-            }
+            ) : null}
         </>
     )
 }

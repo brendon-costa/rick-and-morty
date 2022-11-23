@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {getLocation} from "../services/location-service";
 
-export const useLocation = (pageNumber: number): any => {
+export const useLocation = (pageNumber: number, searchName: string): any => {
     const [locations, setLocations] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [pages, setPages] = useState(1);
@@ -9,7 +9,7 @@ export const useLocation = (pageNumber: number): any => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getLocation(pageNumber);
+                const response = await getLocation(pageNumber, searchName);
                 setLocations(response.data.results);
                 setPages(response.data.info.count);
                 setLoading(false);
@@ -20,6 +20,6 @@ export const useLocation = (pageNumber: number): any => {
             }
         };
         fetchData();
-    }, [pageNumber]);
+    }, [pageNumber, searchName]);
     return {locations, loading, pages, error};
 }

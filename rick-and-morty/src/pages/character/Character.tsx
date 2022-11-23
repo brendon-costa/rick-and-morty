@@ -17,7 +17,7 @@ export default function Character() {
 
     return (
         <div>
-            <NavSearch title="Character" changeSearch={(value) => setSearch({...value})}/>
+            <NavSearch title="Character" advancedSearch={true} changeSearch={(value) => setSearch({...value})}/>
             <Container>
                 <Grid container>
                     {characters && characters.map((character: CharacterModel) => {
