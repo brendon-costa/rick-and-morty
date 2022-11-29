@@ -26,3 +26,4 @@ export const useCharacter = (pageNumber: number, search: CharacterSearchModel): 
     }, [pageNumber, search]);
     return {characters, loading, pages, error};
 }
+
